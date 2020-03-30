@@ -21,7 +21,7 @@ if __name__ == "__main__":
         if not os.path.exists(split_path):
             os.makedirs(split_path)
 
-        joined_path = f'download/rocnik{rocnik}/serie{serie}/joined_uloha-{problem}.pdf'
+        joined_path = f'corrected/rocnik{rocnik}/serie{serie}/joined_uloha-{problem}.pdf'
 
         #nacteme ulozeny pocet stran
         with open(f"download/rocnik{rocnik}/serie{serie}/stranyprorozdeleni_uloha-{problem}.txt","r") as f:
