@@ -17,7 +17,7 @@ if __name__ == "__main__":
     for problem in problems:
         print(f'uloha: {problem}')
 
-        split_path = f'split/rocnik{rocnik}/serie{serie}/uloha-{problem}'
+        split_path = f'corrected/rocnik{rocnik}/serie{serie}/uloha-{problem}'
         if not os.path.exists(split_path):
             os.makedirs(split_path)
 
@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
             for pdf in dictnarozdeleni.keys():
                 pages = dictnarozdeleni[pdf]
-                outpath = "split" + pdf[8:]
+                outpath = "corrected" + pdf[8:]
                 #print(str(pages).ljust(8), str(pozice).ljust(5), pdf )
 
                 writer = PdfFileWriter()
