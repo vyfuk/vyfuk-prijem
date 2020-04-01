@@ -1,4 +1,4 @@
-# Skripty k FYKOSímu příjmu řešení (+rozdělení pro odeslání řešitelům)
+### Skripty k FYKOSímu příjmu řešení (+rozdělení pro odeslání řešitelům)
 
 $ autoprijem.py -D --login jmeno_na_serveru
 
