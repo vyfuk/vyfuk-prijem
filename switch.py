@@ -1,7 +1,7 @@
-import os, glob, shutil
+import os, glob, shutil, json
 problems = ['1', '2', '3', '4', '5', 'P', 'E', 'S']
 
-exceptions = {} #tadyto jeste nejak posefovat asi aby se to nemuselo pokazde zadavat znovu
+manynames_path = "download/poradi_jmen_vicejmennych_resitelu.txt"
 
 def back_up(path):
     back_up_path = path + "/back_up_switched"
@@ -21,11 +21,11 @@ def switch_name(path):
         koncovka = n[n.find('-'):]
 
         if '_' in za_krestnim:
-            if not cele_jmeno in exceptions.keys():
-                index_prijmeni = input(f'Kolikate slovo z {cele_jmeno} je prijmeni? Kdyztak koukni do FKSDB.')
-                exceptions[cele_jmeno] = index_prijmeni
+            if not cele_jmeno in manynames.keys():
+                index_prijmeni = input(f'Kolikate slovo z {cele_jmeno} je prijmeni? Indexovano od 1. Kdyztak koukni do FKSDB.')
+                manynames[cele_jmeno] = index_prijmeni
             names = cele_jmeno.split('_')
-            bn = names.pop(int(exceptions[cele_jmeno])-1)
+            bn = names.pop(int(manynames[cele_jmeno])-1)
             for name in names:
                 bn += '_' + name  
             bn += koncovka
@@ -43,7 +43,21 @@ if __name__ == "__main__":
     serie = input('napis cislo serie: ')
     path = f'download/rocnik{rocnik}/serie{serie}'
 
+    #nacist manynames
+    if os.path.exists(manynames_path):
+        with open(manynames_path,"r") as f:
+            manynames = json.load(f)
+    else:
+        manynames = {}
+
+    #switch
     print("Prehazuju")
     for problem in problems:
-        switch_name(path + "/uloha-{problem}/*" )
+        switch_name(path + f"/uloha-{problem}/*" )
+    #save manynames
+    with open(manynames_path,"w") as f:
+        json.dump(manynames,f)
+
+
+    #back up files
     back_up(path)
