@@ -9,7 +9,9 @@ $ switch.py
 
 Stáhnutá řešní jsou pojmenovaná ve formátu "jméno_příjmení..."
 přehodí je, aby řešení byla správně abecedně seřazená "přijmení_jméno". U řešitelů, kteří mají 3+ jmen se zeptá na input od uživatele, které je příjmení.
-perlička: "ch" se v systému v angličtině řadí pod "c", takže tento skript nahradí "ch" na začátku jména za "hz"
+Tato víceslovná jména a pozice přijmení si ukládá. 
+Také vytvoří zálohu všech řešení po přehození jmen (pokud už záloha neexistuje).
+perlička: "ch" se v systému v angličtině řadí pod "c", takže tento skript nahradí "ch" na začátku jména za "hzz"
 
 $ pdfjoin_exceptions_split.py
 
