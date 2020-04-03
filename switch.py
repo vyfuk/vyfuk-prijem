@@ -1,7 +1,16 @@
-import os, glob
+import os, glob, shutil
 problems = ['1', '2', '3', '4', '5', 'P', 'E', 'S']
 
 exceptions = {} #tadyto jeste nejak posefovat asi aby se to nemuselo pokazde zadavat znovu
+
+def back_up(path):
+    back_up_path = path + "/back_up_switched"
+    if not os.path.exists(back_up_path):
+        print("Zalohuju")
+        shutil.copytree(path, back_up_path)
+        print("Switched download zalohovan.")
+    else:
+        print("Nezalohuju, zaloha uz existuje.")
 
 def switch_name(path):
     for p in (glob.glob(path)):
@@ -30,7 +39,11 @@ def switch_name(path):
 
         os.rename(p,os.path.join(path, bn))
 if __name__ == "__main__":
-	rocnik = input('napis cislo rocniku: ')
-	serie = input('napis cislo serie: ')
-	for problem in problems:
-		switch_name(f'download/rocnik{rocnik}/serie{serie}/uloha-{problem}/*')
+    rocnik = input('napis cislo rocniku: ')
+    serie = input('napis cislo serie: ')
+    path = f'download/rocnik{rocnik}/serie{serie}'
+
+    print("Prehazuju")
+    for problem in problems:
+        switch_name(path + "/uloha-{problem}/*" )
+    back_up(path)
