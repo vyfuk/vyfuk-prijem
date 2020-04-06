@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
             for pdf in dictnarozdeleni.keys():
                 pages = dictnarozdeleni[pdf]
-                outpath = "corrected" + pdf[8:]
+                outpath = split_path + pdf[pdf.find("uloha-")+7:]
                 #print(str(pages).ljust(8), str(pozice).ljust(5), pdf )
 
                 writer = PdfFileWriter()
