@@ -1,5 +1,4 @@
 import os, os.path, datetime, subprocess
-import argparse
 
 UPLOAD_DIR = "/network/data/www/fykos/db.fykos.cz/upload/fykos/"
 DOWNLOAD_DIR = "./download/"
@@ -24,21 +23,9 @@ def download(username, rocnik, serie):
     os.system(command)
     
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-D', '--download', action='store_true') 
-    
-    parser.add_argument('-r', '--rocnik', type=int, required=True)
-    parser.add_argument('-s', '--serie', type=int, required=True)
-    
-    parser.add_argument('-p', '--problems', nargs='+')
-    parser.add_argument('--login')
-    
-    args = parser.parse_args()
-    
-    if args.download:
-        if args.login is None:
-            raise Exception('Login name required. Specify by --login')
-        #Todo : thrash the old files before downloading
-        #       check for successful download 
-        download(args.login, args.rocnik, args.serie)
 
+    rocnik = int(input('napis cislo rocniku: '))
+    serie = int(input('napis cislo serie: '))
+    login = input('napis login na server: ')
+
+    download(login, rocnik, serie)
