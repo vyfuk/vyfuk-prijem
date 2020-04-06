@@ -10,35 +10,23 @@ def get_pages(file_name):
         pg = pdf.getNumPages()
     return pg
 
-def pdf_ok_writing(pdf):
+def pdf_ok_writing(pdf, temp_path = "./temp"):
+    if not os.path.exists(temp_path):
+            os.makedirs(temp_path)
     try:
         merger = PdfFileMerger()
         merger.append(pdf)
-        merger.write(TEMP_DIR + "test_can_be_deleted.pdf")
+        merger.write(temp_path + "/test_can_be_deleted.pdf")
         merger.close()
         return True
     except:
         return False
 
-problems = ["1","2","3","4","5","P","E","S"]
-white = 'white.pdf'
+def join_it(download_path, split_exceptions, problems):
+    exceptions = []
+    white = 'white.pdf' 
 
-TEMP_DIR = "./temp"
-if not os.path.exists(TEMP_DIR):
-    os.makedirs(TEMP_DIR)
-
-exceptions = []
-
-if __name__ == "__main__":
-
-    
-
-    rocnik = input('napis cislo rocniku: ')
-    serie = input('napis cislo serie: ')
-    split_exceptions = input('Vyjimky oddelene nebo dohromady? o/d (oddelene pro elektronicke opravovani, dohromady po tisk, default = o) ')
-    print()
-
-    if split_exceptions == "d":
+    if split_exceptions == "d" or split_exceptions == False:
         split_exceptions = False
     else:
         split_exceptions = True
@@ -50,7 +38,7 @@ if __name__ == "__main__":
         print(f'uloha: {problem}')
 
         merger = PdfFileMerger()
-        path_list = glob.glob(f'download/rocnik{rocnik}/serie{serie}/uloha-{problem}/*')
+        path_list = glob.glob( download_path + f'/uloha-{problem}/*')
         pdf_list = [path for path in path_list if 'pdf' in path[-4:].lower()]
         dictnarozdeleni = OrderedDict()
 
@@ -79,12 +67,12 @@ if __name__ == "__main__":
                 exceptions.append(pdf)
 
         
-        joined_path = f'download/rocnik{rocnik}/serie{serie}/joined_uloha-{problem}.pdf'
+        joined_path = download_path + f'/joined_uloha-{problem}.pdf'
         merger.write(joined_path)
         merger.close()
         
         #az to nekdo bude chtit rozdelovat zpatky
-        with open(f"download/rocnik{rocnik}/serie{serie}/stranyprorozdeleni_uloha-{problem}.txt","w") as f:
+        with open( download_path +  f"/stranyprorozdeleni_uloha-{problem}.txt","w") as f:
             json.dump(dictnarozdeleni,f)
 
         #tady uz jen vypisuju co se delo
@@ -99,7 +87,7 @@ if __name__ == "__main__":
         if split_exceptions:
             #print(f'Exceptions u{problem}:')
 
-            exc_path = f'download/rocnik{rocnik}/serie{serie}/exceptions/uloha-{problem}'
+            exc_path = download_path + f'/exceptions/uloha-{problem}'
             if not os.path.exists(exc_path):
                 os.makedirs(exc_path)
 
@@ -116,7 +104,7 @@ if __name__ == "__main__":
     if not split_exceptions:
         print('Exceptions:')
 
-        exc_path = f'download/rocnik{rocnik}/serie{serie}/exceptions'
+        exc_path = download_path + f'/exceptions'
         if not os.path.exists(exc_path):
             os.mkdir(exc_path)
 
@@ -127,4 +115,15 @@ if __name__ == "__main__":
             #narve jim do jmena souboru slovo exceptions misto ulohy a tim je premisti do slozky exceptions
             os.rename(exception, exc_path + exception[a+7:])     
 
-        
+if __name__ == "__main__":
+
+    problems = ["1","2","3","4","5","P","E","S"]  
+
+    rocnik = input('napis cislo rocniku: ')
+    serie = input('napis cislo serie: ')
+    split_exceptions = input('Vyjimky oddelene nebo dohromady? o/d (oddelene pro elektronicke opravovani, dohromady po tisk, default = o) ')
+    print()
+
+    download_path = f"./download/rocnik{rocnik}/serie{serie}"
+
+    join_it(download_path, split_exceptions, problems)

@@ -4,27 +4,23 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 from collections import OrderedDict
 
 
-if __name__ == "__main__":
-    
-    problems = ["1","2","3","4","5","P","E","S"]
-
-    rocnik = input('napis cislo rocniku: ')
-    serie = input('napis cislo serie: ')
-
+def split_it(split_dir, joined_dir, stranytxt_dir, problems):
     stranysouhlasi = True
     kdenesouhlasi = []
     
     for problem in problems:
+
+        split_path = split_dir + f'/uloha-{problem}'
+        joined_path = joined_dir + f'/joined_uloha-{problem}.pdf' 
+        stranytxtpath = stranytxt_dir + f"/stranyprorozdeleni_uloha-{problem}.txt"
+
         print(f'uloha: {problem}')
 
-        split_path = f'corrected/rocnik{rocnik}/serie{serie}/uloha-{problem}'
         if not os.path.exists(split_path):
             os.makedirs(split_path)
 
-        joined_path = f'corrected/rocnik{rocnik}/serie{serie}/joined_uloha-{problem}.pdf'
-
         #nacteme ulozeny pocet stran
-        with open(f"download/rocnik{rocnik}/serie{serie}/stranyprorozdeleni_uloha-{problem}.txt","r") as f:
+        with open(stranytxtpath,"r") as f:
             dictnarozdeleni = OrderedDict(json.load(f))
 
         
@@ -59,3 +55,20 @@ if __name__ == "__main__":
     else:
         print("Strany nesedi v techto ulohach")
         print(kdenesouhlasi)
+
+
+if __name__ == "__main__":
+    
+    problems = ["1","2","3","4","5","P","E","S"]
+
+
+    rocnik = input('napis cislo rocniku: ')
+    serie = input('napis cislo serie: ')
+
+    split_dir = f'./corrected/rocnik{rocnik}/serie{serie}'
+    joined_dir = f'./corrected/rocnik{rocnik}/serie{serie}'
+    stranytxt_dir = f"./download/rocnik{rocnik}/serie{serie}"
+
+
+    split_it(split_dir, joined_dir, stranytxt_dir, problems)
+    
