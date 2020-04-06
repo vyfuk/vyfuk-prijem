@@ -1,7 +1,5 @@
 import os, glob, shutil, json
-problems = ['1', '2', '3', '4', '5', 'P', 'E', 'S']
 
-manynames_path = "download/poradi_jmen_vicejmennych_resitelu.txt"
 
 def back_up(path):
     back_up_path = path + "/back_up_switched"
@@ -39,6 +37,9 @@ def switch_name(path):
 
         os.rename(p,os.path.join(path, bn))
 if __name__ == "__main__":
+    problems = ['1', '2', '3', '4', '5', 'P', 'E', 'S']
+    manynames_path = "download/poradi_jmen_vicejmennych_resitelu.txt"
+
     rocnik = input('napis cislo rocniku: ')
     serie = input('napis cislo serie: ')
     path = f'download/rocnik{rocnik}/serie{serie}'
@@ -57,7 +58,6 @@ if __name__ == "__main__":
     #save manynames
     with open(manynames_path,"w") as f:
         json.dump(manynames,f)
-
 
     #back up files
     back_up(path)
