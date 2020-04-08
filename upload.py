@@ -32,7 +32,7 @@ def check_and_save_submitids(local_path, submitids_path, problems):
     with open(submitids_path, "w") as f:
         for submitid in submitids:
             print(f"{submitid},", file = f, end=" ")
-        print(f"submitids saved at {submitids_path}")
+        print(f"{len(submitids)} submitids saved at {submitids_path}")
 
 
 def upload(local_path, remote_path, username, temp_path = "./temp"):
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     remote_path = f"/network/data/www/fykos/db.fykos.cz/upload/corrected/fykos/rocnik{rocnik}/serie{serie}"
     submitids_path = f"./corrected/rocnik{rocnik}/submitids.txt"
 
-    submitids = check_and_save_submitids(local_path, submitids_path, problems)
+    check_and_save_submitids(local_path, submitids_path, problems)
     upload(local_path, remote_path, username)
 
 
