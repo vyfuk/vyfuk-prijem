@@ -1,7 +1,6 @@
 import os, os.path, glob
 
 class ExistsError(Exception):
-    f"{submitids_path} already exists"
     pass
 
 def check_and_save_submitids(local_path, submitids_path, problems):
@@ -30,7 +29,7 @@ def check_and_save_submitids(local_path, submitids_path, problems):
     if os.path.exists(submitids_path):
         raise ExistsError(f"{submitids_path} already exists. Move to prevent overwrite.")
 
-    with open(sumbmitids_path, "w") as f:
+    with open(submitids_path, "w") as f:
         for submitid in submitids:
             print(f"{submitid},", file = f, end=" ")
         print(f"submitids saved at {submitids_path}")
