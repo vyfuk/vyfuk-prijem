@@ -53,13 +53,14 @@ if __name__ == "__main__":
     username = input('napis login na server: ')
     print()
 
-    #bacha aby v te lokalni slozce nebylo jeste neco jineho
-    local_path = f"./corrected/rocnik{rocnik}/serie{serie}/*"
+    #do upload dat slozky uloha-U
+    local_path = f"./corrected/rocnik{rocnik}/serie{serie}/upload/*"
     remote_path = f"/network/data/www/fykos/db.fykos.cz/upload/corrected/fykos/rocnik{rocnik}/serie{serie}"
-    submitids_path = f"./corrected/rocnik{rocnik}/submitids.txt"
+    submitids_path = f"./corrected/rocnik{rocnik}/serie{serie}/submitids.txt"
 
     check_and_save_submitids(local_path, submitids_path, problems)
     upload(local_path, remote_path, username)
+
 
 
 
