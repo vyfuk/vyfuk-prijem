@@ -9,7 +9,8 @@ def check_and_save_submitids(local_path, submitids_path, problems):
 
     for problem in problems:
         path_list = glob.glob( local_path[:-1] + f'uloha-{problem}/*')
-        for pdf in path_list:
+        pdf_list = [path for path in path_list if 'pdf' in path[-4:].lower()]
+        for pdf in pdf_list:
             idpozice = pdf.find("__")+2
             submitid = pdf[idpozice:idpozice+5]
             try:
