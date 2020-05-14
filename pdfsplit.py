@@ -1,17 +1,28 @@
-import os
-import json
+import os, json, shutil
 from PyPDF2 import PdfFileWriter, PdfFileReader
 from collections import OrderedDict
 
+def init_upload_me(split_path, upload_me_path, problems):
+    back_up_path = upload_me_path + "/upload_me"
+    if not os.path.exists(back_up_path):
+        print("Vytvarim ./upload_me")
 
-def split_it(split_dir, joined_dir, stranytxt_dir, problems):
+        for problem in problems:
+            shutil.copytree(split_path + f'/uloha-{problem}', back_up_path + f'/uloha-{problem}')
+        
+        print("upload_me vytvoren.\n")
+    else:
+        print("upload_me uz existuje.\n")
+
+
+def split_it(joined_and_split_dir, stranytxt_dir, problems):
     stranysouhlasi = True
     kdenesouhlasi = []
     
     for problem in problems:
 
-        split_path = split_dir + f'/uloha-{problem}'
-        joined_path = joined_dir + f'/joined_uloha-{problem}.pdf' 
+        split_path = joined_and_split_dir + f'/zaloha_split/uloha-{problem}'
+        joined_path = joined_and_split_dir + f'/joined_uloha-{problem}.pdf' 
         stranytxtpath = stranytxt_dir + f"/stranyprorozdeleni_uloha-{problem}.txt"
 
         print(f'uloha: {problem}')
@@ -56,6 +67,7 @@ def split_it(split_dir, joined_dir, stranytxt_dir, problems):
         print("Strany nesedi v techto ulohach")
         print(kdenesouhlasi)
 
+    init_upload_me(joined_and_split_dir + f'/zaloha_split', joined_and_split_dir, problems)
 
 if __name__ == "__main__":
     
@@ -65,10 +77,8 @@ if __name__ == "__main__":
     rocnik = input('napis cislo rocniku: ')
     serie = input('napis cislo serie: ')
 
-    split_dir = f'./corrected/rocnik{rocnik}/serie{serie}'
-    joined_dir = f'./corrected/rocnik{rocnik}/serie{serie}'
+    joined_and_split_dir = f'./corrected/rocnik{rocnik}/serie{serie}'
     stranytxt_dir = f"./download/rocnik{rocnik}/serie{serie}"
 
-
-    split_it(split_dir, joined_dir, stranytxt_dir, problems)
+    split_it(joined_and_split_dir, stranytxt_dir, problems)
     
