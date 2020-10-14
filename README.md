@@ -6,6 +6,8 @@ $ makeprijem.py
 Masterskript, potřebuje download.py, switch.py a pdfjoin.py (a white.pdf).
 Dělá to samé, jako tyhle tři skripty dohromady, prakticky celý příjem.
 
+Momentálně tedy stačí spustit tento skript, zbytek popisu jsou spíše doplňující informace.
+
 $ pdfsplit.py
 
 Natáhne opravené joined soubory z "/corrected/rocnik{rocnik}/serie{serie}/joined_uloha-{problem}.pdf" (tyhle složky se musí ručně založit a dát tam soubory), na ročník a sérii se zeptá a díky souboru, co vytvořil pdfjoin.py je zase rozpojí na jednotlivé řešitele a rozřadí do složek podle úloh pod "/corrected/..."
