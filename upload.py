@@ -55,7 +55,7 @@ if __name__ == "__main__":
     print()
 
     #do upload dat slozky uloha-U
-    local_path = f"./corrected/rocnik{rocnik}/serie{serie}/upload/*"
+    local_path = f"./corrected/rocnik{rocnik}/serie{serie}/upload_me/*"
     remote_path = f"/network/data/www/fykos/db.fykos.cz/upload/corrected/fykos/rocnik{rocnik}/serie{serie}"
     submitids_path = f"./corrected/rocnik{rocnik}/serie{serie}/submitids.txt"
 
