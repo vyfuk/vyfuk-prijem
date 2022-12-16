@@ -41,7 +41,7 @@ def switch_name(given_path, manynames, problems):
 
 if __name__ == "__main__":
 
-    problems = ['1', '2', '3', '4', '5', 'P', 'E', 'S']
+    problems = ['1', '2', '3', '4', '5', 'E', 'V']
     
     manynames_path = "./download/poradi_jmen_vicejmennych_resitelu.txt"
 

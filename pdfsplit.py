@@ -1,6 +1,11 @@
 import os, json, shutil
-from PyPDF2 import PdfFileWriter, PdfFileReader
 from collections import OrderedDict
+
+try:
+    from PyPDF2 import PdfFileWriter, PdfFileReader
+except ModuleNotFoundError:
+    print("Please install module PyPDF2 via pip (Windows) or your package provider (Linux)")
+    quit(255)
 
 def init_upload_me(split_path, upload_me_path, problems):
     back_up_path = upload_me_path + "/upload_me"

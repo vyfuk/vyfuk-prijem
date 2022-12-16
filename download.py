@@ -5,7 +5,7 @@ def download(upload_path, download_path, username, problems, temp_path = "./temp
     if not os.path.exists(temp_path):
         os.makedirs(temp_path)
 
-    if len(problems) < 8: #pokud chceme jen nektere ulohy
+    if len(problems) < 7: #pokud chceme jen nektere ulohy
         for problem in problems:
             problem_upload_path = upload_path[:-1] + f"uloha-{problem}/*"
             problem_download_path = download_path + f"/uloha-{problem}"
@@ -26,13 +26,13 @@ def download(upload_path, download_path, username, problems, temp_path = "./temp
 
 if __name__ == "__main__":
     
-    problems = ['1', '2', '3', '4', '5', 'P', 'E', 'S']
+    problems = ['1', '2', '3', '4', '5', 'E', 'V']
 
     rocnik = int(input('napis cislo rocniku: '))
     serie = int(input('napis cislo serie: '))
     username = input('napis login na server: ')
 
     download_path = f"./download/rocnik{rocnik}/serie{serie}"
-    upload_path = f"/network/data/www/fykos/db.fykos.cz/upload/fykos/rocnik{rocnik}/serie{serie}/*"
+    upload_path = f"/network/data/www/fykos/db.fykos.cz/upload/vyfuk/rocnik{rocnik}/serie{serie}/*"
 
     download(upload_path, download_path, username, problems)

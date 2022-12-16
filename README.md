@@ -1,4 +1,4 @@
-### Skripty k FYKOSímu příjmu řešení a obálkování
+### Skripty k Výfučímu příjmu řešení a obálkování
 
 
 $ makeprijem.py

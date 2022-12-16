@@ -4,7 +4,7 @@ import json
 
 if __name__ == "__main__":
     
-    problems = ['1', '2', '3', '4', '5', 'P', 'E', 'S'] #feel free to change this
+    problems = ['1', '2', '3', '4', '5', 'E', 'V'] #feel free to change this
 
     rocnik = int(input('napis cislo rocniku: '))
     serie = int(input('napis cislo serie: '))

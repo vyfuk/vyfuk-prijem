@@ -1,8 +1,14 @@
-from PyPDF2 import PdfFileMerger, PdfFileReader
 import glob
 import os
 import json
 from collections import OrderedDict
+
+try:
+    from PyPDF2 import PdfFileMerger, PdfFileReader
+except ModuleNotFoundError:
+    print("Please install module PyPDF2 via pip (Windows) or your package provider (Linux)")
+    quit(255)
+
 
 def get_pages(file_name):
     with open(file_name,'rb') as file:

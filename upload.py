@@ -47,7 +47,7 @@ def upload(local_path, remote_path, username, temp_path = "./temp"):
 
 if __name__ == "__main__":
 
-    problems = ['1', '2', '3', '4', '5', 'P', 'E', 'S']
+    problems = ['1', '2', '3', '4', '5', 'E', 'V']
 
     rocnik = int(input('napis cislo rocniku: '))
     serie = int(input('napis cislo serie: '))
