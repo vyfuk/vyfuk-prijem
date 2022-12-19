@@ -11,8 +11,8 @@ if __name__ == "__main__":
     username = input('napis login na server: ')
     split_exceptions = input('Vyjimky oddelene nebo dohromady? o/d (oddelene pro elektronicke opravovani, dohromady po tisk, default = o) ')
 
-    upload_path = f"/network/data/www/fykos/db.fykos.cz/upload/fykos/rocnik{rocnik}/serie{serie}/*"
     download_path = f"./download/rocnik{rocnik}/serie{serie}"
+    upload_path = f"/network/data/www/fykos/db.fykos.cz/upload/vyfuk/rocnik{rocnik}/serie{serie}/**/*.pdf"
 
     download.download(upload_path, download_path, username, problems)
 

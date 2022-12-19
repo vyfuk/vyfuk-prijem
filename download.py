@@ -1,4 +1,4 @@
-import os, os.path, datetime, subprocess
+import os, os.path
 
 def download(upload_path, download_path, username, problems, temp_path = "./temp"):
     """odkud kam kdo stahuje"""
@@ -7,7 +7,7 @@ def download(upload_path, download_path, username, problems, temp_path = "./temp
 
     if len(problems) < 7: #pokud chceme jen nektere ulohy
         for problem in problems:
-            problem_upload_path = upload_path[:-1] + f"uloha-{problem}/*"
+            problem_upload_path = upload_path[:-8] + f"uloha-{problem}/*.pdf"
             problem_download_path = download_path + f"/uloha-{problem}"
 
             if not os.path.exists(problem_download_path):
@@ -33,6 +33,6 @@ if __name__ == "__main__":
     username = input('napis login na server: ')
 
     download_path = f"./download/rocnik{rocnik}/serie{serie}"
-    upload_path = f"/network/data/www/fykos/db.fykos.cz/upload/vyfuk/rocnik{rocnik}/serie{serie}/*"
+    upload_path = f"/network/data/www/fykos/db.fykos.cz/upload/vyfuk/rocnik{rocnik}/serie{serie}/**/*.pdf"
 
     download(upload_path, download_path, username, problems)
